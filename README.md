@@ -1,5 +1,5 @@
-BankApp
-This repository contains my first **full-fledged** Java project as a first-year Computer Science student.
+_**BankApp**_
+  This repository contains my first **full-fledged** Java project as a first-year Computer Science student.
 
 The goal of this project is to practice and apply core programming concepts in Java, including:
   Basic Object-Oriented Programming (OOP) principles
