@@ -34,4 +34,4 @@ Run the program (replace Main with your actual main class name if different):
 ```
 
 Why This Project?
-  This app represents my growth as a CS student. While it starts simple, I plan to evolve it into a more complete application that demonstrates both technical skill and problem-solving ability—something I can proudly include in my future portfolio.
+This app represents my growth as a CS student. While it starts simple, I plan to evolve it into a more complete application that demonstrates both technical skill and problem-solving ability—something I can proudly include in my future portfolio.
