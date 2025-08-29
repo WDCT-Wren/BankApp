@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Transactions {
     static Scanner input = new Scanner(System.in);
 
+    //Method for depositing cash into an account's savings.
     public static void deposit(BankAccount currentAcc) {
         boolean validAmount = false; 
         while (validAmount == false) {
@@ -49,11 +50,45 @@ public class Transactions {
             System.out.println("YOUR REGISTERED ACCOUNT NUMBER: " + newAccountNumber);
         return Main.accounts;
     }
+
+    //Method to show the user the Logged in accounts.
+    public static void showLogIn() {
+        System.out.println("AVAILABLE ACCOUNTS: ");
+            for (BankAccount acc : Main.accounts) {
+                System.out.println("Account number: " + acc.getAccountNumber() + "|| Owner: " + acc.getOwnerName());
+            }
+
+            //Choose what account shall be used
+            System.out.print("ENTER ACCOUNT NUMBER TO PROCEED: ");
+            int enteredAcc = input.nextInt();
+            input.nextLine();
+            
+            BankAccount currentAcc = null;
+            
+            for (BankAccount acc : Main.accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
+                if (acc.getAccountNumber() == enteredAcc) { //if one iteration of the arraylists of account numbersmatches the entered account, that entered account will now be assigned to the current account, which simply "logs you in" to that iteration of accounts.
+                    currentAcc = acc;
+                    break;
+                };
+            }
+
+            // if there are still no accounts in the array list, any input will show this.
+            if (currentAcc == null){
+                System.out.println("ACCOUNT NOT FOUND!");
+            }
+            // if there are existing accounts in the array list, it will follow then the for loop thing.
+            else {
+                System.out.println("LOGIN SUCCESSFUL FOR: " + currentAcc.getOwnerName()); //includes the user name to validate the user passed.
+                //calls the main menu method
+                Main.showMainMenu(currentAcc);
+            }
+    }
     
+    //Method to widthraw funds from an account
     public static void withdrawal(BankAccount currentAcc) {
         boolean validAmount = false;
         while (validAmount == false) {
-            try {
+            try { //Validates the user's input
                 System.out.print("ENTER WITHDRAWAL AMOUNT: ");
                 double amount = input.nextDouble();
                 if (amount < 0) {

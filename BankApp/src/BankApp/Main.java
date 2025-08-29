@@ -14,12 +14,9 @@ public class Main {
     static BankAppUI UI = new BankAppUI(); //Ojbect that is utilized to display all of the UI of the project.
     static Scanner input = new Scanner(System.in);
     static Transactions transactions = new Transactions(); //Object that is focused on the transcations of the user.
+    public static boolean isRunning;
 
     public static void main(String[] args) {
-        // Declare local variables
-        boolean isRunning = true;
-        BankAccount currentAcc;
-
         //Starting menu (Asks user to either choose an existing account, register an account, and exit)
         while (isRunning){
             UI.startingMenu(); // Calls starting menu
@@ -46,45 +43,10 @@ public class Main {
             }
 
             switch (choice) {
-                case 1 -> Transactions.showRegistrationMenu();
-                case 2 -> {
-                    // Show available accounts in the session
-                    System.out.println("AVAILABLE ACCOUNTS: ");
-                    for (BankAccount acc : accounts) {
-                        System.out.println("Account number: " + acc.getAccountNumber() + "|| Owner: " + acc.getOwnerName());
-                    }
-
-                    //Choose what account shall be used
-                    System.out.print("ENTER ACCOUNT NUMBER TO PROCEED: ");
-                    int enteredAcc = input.nextInt();
-                    input.nextLine();
-                    
-                    currentAcc = null;
-                    
-                    for (BankAccount acc : accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
-                        if (acc.getAccountNumber() == enteredAcc) { //if one iteration of the arraylists of account numbersmatches the entered account, that entered account will now be assigned to the current account, which simply "logs you in" to that iteration of accounts.
-                            currentAcc = acc;
-                            break;
-                        };
-                    }
-
-                    // if there are still no accounts in the array list, any input will show this.
-                    if (currentAcc == null){
-                        System.out.println("ACCOUNT NOT FOUND!");
-                    }
-                    // if there are existing accounts in the array list, it will follow then the for loop thing.
-                    else {
-                        System.out.println("LOGIN SUCCESSFUL FOR: " + currentAcc.getOwnerName()); //includes the user name to validate the user passed.
-                        //calls the main menu method
-                        showMainMenu(currentAcc);
-                    }
-                }
-                case 3 -> { //if user chooses to exit the session
-                    System.out.println("MENU EXITED");
-                    System.out.println("SESSION ENDED");
-                    System.out.println("THANK YOU FOR BANKING WITH US!");
-                    isRunning = false;
-                }
+                case 1 -> Transactions.showRegistrationMenu(); //If usre chooses to register a new account in the session
+                case 2 -> Transactions.showLogIn(); //If user chooses to log in an existing account
+                case 3 -> UI.endMenu(); //if user chooses to exit the session
+            
             }
         }
         input.close();
