@@ -1,4 +1,4 @@
-package BankApp;
+package SaveUp;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,9 +7,9 @@ public class Transactions {
     static Scanner input = new Scanner(System.in);
 
     //Method for depositing cash into an account's savings.
-    public static void deposit(BankAccount currentAcc) {
+    public static void deposit(SavingsPocket currentPocket) {
         boolean validAmount = false; 
-        while (validAmount == false) {
+        while (!validAmount) {
             try {
                 System.out.print("ENTER AMOUNT DEPOSITED: ");
                 double amount = input.nextDouble();
@@ -19,7 +19,7 @@ public class Transactions {
                     input.nextLine();
                 }
                 else{
-                    currentAcc.deposit(amount);
+                    currentPocket.deposit(amount);
                     validAmount = true;
                 }
             }
@@ -31,7 +31,7 @@ public class Transactions {
     }
 
     //Registration menu method that will be called when the user wants to register a new account
-    public static ArrayList<BankAccount> showRegistrationMenu() {
+    public static ArrayList<SavingsPocket> showRegistrationMenu() {
         //Reistration logic
         String name;
         while (true) {
@@ -41,10 +41,10 @@ public class Transactions {
             System.out.println("INVALID NAME! Please only use letters and spaces.");
         }
 
-            BankAccount newAccount = new BankAccount(name); //Makes a new object iteration of the bank account with the corresponding name
+            SavingsPocket newAccount = new SavingsPocket(name); //Makes a new object iteration of the bank account with the corresponding name
             int newAccountNumber = newAccount.getAccountNumber();
 
-            Main.accounts.add(newAccount); //adds the account to the BankAccount Arraylists inside the Main itself
+            Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
             
             System.out.println("ACCOUNT REGISTERD SUCCESSFULLY");
             System.out.println("YOUR REGISTERED ACCOUNT NUMBER: " + newAccountNumber);
@@ -54,7 +54,7 @@ public class Transactions {
     //Method to show the user the Logged in accounts.
     public static void showLogIn() {
         System.out.println("AVAILABLE ACCOUNTS: ");
-            for (BankAccount acc : Main.accounts) {
+            for (SavingsPocket acc : Main.accounts) {
                 System.out.println("Account number: " + acc.getAccountNumber() + "|| Owner: " + acc.getOwnerName());
             }
 
@@ -63,9 +63,9 @@ public class Transactions {
             int enteredAcc = input.nextInt();
             input.nextLine();
             
-            BankAccount currentAcc = null;
+            SavingsPocket currentAcc = null;
             
-            for (BankAccount acc : Main.accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
+            for (SavingsPocket acc : Main.accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
                 if (acc.getAccountNumber() == enteredAcc) { //if one iteration of the arraylists of account numbersmatches the entered account, that entered account will now be assigned to the current account, which simply "logs you in" to that iteration of accounts.
                     currentAcc = acc;
                     break;
@@ -85,7 +85,7 @@ public class Transactions {
     }
     
     //Method to widthraw funds from an account
-    public static void withdrawal(BankAccount currentAcc) {
+    public static void withdrawal(SavingsPocket currentAcc) {
         boolean validAmount = false;
         while (validAmount == false) {
             try { //Validates the user's input

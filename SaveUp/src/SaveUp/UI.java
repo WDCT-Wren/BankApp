@@ -1,6 +1,6 @@
-package BankApp;
+package SaveUp;
 
-public class BankAppUI {
+public class UI {
         public void endMenu() {
                 System.out.println("MENU EXITED");
                 System.out.println("SESSION ENDED");
@@ -9,13 +9,13 @@ public class BankAppUI {
         }
 
         public void startingMenu() {
-                System.out.println("*********************************");
-                System.out.println("BANK OF THE BURGIS OF CAVITE(BBC)");
-                System.out.println("*********************************");
+                System.out.println("**************************");
+                System.out.println("          SAVEUP          ");
+                System.out.println("**************************");
                 System.out.println("1. Register New Account");
                 System.out.println("2. Choose Existing Account");
                 System.out.println("3. exit");
-                System.out.println("*********************************");
+                System.out.println("**************************");
         }
 
         public void transactionMenu() {
