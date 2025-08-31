@@ -12,18 +12,18 @@ public class UI {
                 System.out.println("**************************");
                 System.out.println("          SAVEUP          ");
                 System.out.println("**************************");
-                System.out.println("1. Register New Account");
-                System.out.println("2. Choose Existing Account");
+                System.out.println("1. Register New Pocket");
+                System.out.println("2. Choose Existing Pocket");
                 System.out.println("3. exit");
                 System.out.println("**************************");
         }
 
         public void transactionMenu() {
-                System.out.println("***************");
-                System.out.println("1. Show Balance");
+                System.out.println("**********************");
+                System.out.println("1. Show Pocket Balance");
                 System.out.println("2. Deposit");
                 System.out.println("3. Withdraw");
                 System.out.println("4. Exit");
-                System.out.println("***************");
+                System.out.println("**********************");
         }
 }
