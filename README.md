@@ -1,4 +1,4 @@
-_**BankApp**_
+_**SaveUp**_
   This repository contains my first **full-fledged** Java project as a first-year Computer Science student.
 
 The goal of this project is to practice and apply core programming concepts in Java, including:
@@ -8,14 +8,14 @@ The goal of this project is to practice and apply core programming concepts in J
   Class separation for cleaner, modular code
   Project Purpose
 
-This project is both a learning exercise and a foundation for a portfolio piece. By working on this app, I aim to gradually deepen my understanding of Java while building a program that simulates basic banking operations (such as account creation, deposits, and withdrawals).
+This project is both a learning exercise and a foundation for a portfolio piece. By working on this app, I aim to gradually deepen my understanding of Java while building a program that simulates basic banking operations (such as separate savings jars creation, deposits, widthrawals, and soon fund transfers).
 
 Roadmap / Future Plans
   By the end of the semester, I plan to:
   Implement data structures for managing multiple accounts more efficiently
   Add exception handling and robust input validation
   Explore file handling or database integration to save account data
-  (Stretch goal) Create a Graphical User Interface (GUI) version of the app
+  And finally, to create a Graphical User Interface (GUI) version of the app
 
 How to Run
 
@@ -24,7 +24,7 @@ Clone this repository:
   git clone https://github.com/<your-username>/BankApp.git
   cd BankApp
 ```  
-Compile the project (assuming files are in the BankApp package):
+Compile the project (assuming files are in the SaveUp package):
 ```
   javac BankApp/*.java
 ```
