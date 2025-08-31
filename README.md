@@ -1,4 +1,5 @@
 _**SaveUp**_
+
   This repository contains my first **full-fledged** Java project as a first-year Computer Science student.
 
 The goal of this project is to practice and apply core programming concepts in Java, including:
