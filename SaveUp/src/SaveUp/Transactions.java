@@ -46,14 +46,14 @@ public class Transactions {
 
             Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
             
-            System.out.println("ACCOUNT REGISTERD SUCCESSFULLY");
-            System.out.println("YOUR REGISTERED ACCOUNT NUMBER: " + newAccountNumber);
+            System.out.println("POCKET ADDED SUCCESSFULLY");
+            System.out.println("YOUR NEW POCKET NUMBER: " + newAccountNumber);
         return Main.accounts;
     }
 
     //Method to show the user the Logged in accounts.
     public static void showLogIn() {
-        System.out.println("AVAILABLE ACCOUNTS: ");
+        System.out.println("AVAILABLE POCKETS: ");
             for (SavingsPocket acc : Main.accounts) {
                 System.out.println("Pocket number: " + acc.getAccountNumber() + "|| Pocket Name: " + acc.getOwnerName());
             }

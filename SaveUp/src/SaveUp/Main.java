@@ -14,7 +14,7 @@ public class Main {
     static UI UI = new UI(); //Ojbect that is utilized to display all of the UI of the project.
     static Scanner input = new Scanner(System.in);
     static Transactions transactions = new Transactions(); //Object that is focused on the transcations of the user.
-    public static boolean isRunning = true;
+    static boolean isRunning = true;
 
     public static void main(String[] args) {
         //Starting menu (Asks user to either choose an existing account, register an account, and exit)
