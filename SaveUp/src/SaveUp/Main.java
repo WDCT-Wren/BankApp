@@ -14,7 +14,7 @@ public class Main {
     static UI UI = new UI(); //Ojbect that is utilized to display all of the UI of the project.
     static Scanner input = new Scanner(System.in);
     static Transactions transactions = new Transactions(); //Object that is focused on the transcations of the user.
-    public static boolean isRunning;
+    public static boolean isRunning = true;
 
     public static void main(String[] args) {
         //Starting menu (Asks user to either choose an existing account, register an account, and exit)
@@ -56,32 +56,31 @@ public class Main {
     public static void showMainMenu(SavingsPocket currentAcc) {
         boolean inAccount = true;
         while (inAccount){       
-            UI.transactionMenu(); // Calls to the transaction menu
+            UI.transactionMenu(currentAcc); // Calls to the transaction menu
             boolean validChoice = false;
             int accountChoice = 0;
             // Validate input in transaction menu
             while (validChoice == false){
                 try {
-                    System.out.print("Enter your transaction (1-4): "); // Get and process user choice
+                    System.out.print("Enter your transaction (1-3): "); // Get and process user choice
                     accountChoice = input.nextInt();
                     if (accountChoice < 1 || accountChoice > 4){
-                        System.out.println("INVALID CHOICE! Please choose between 1-4.");
+                        System.out.println("INVALID CHOICE! Please choose between 1-3.");
                     }
                     else {
                         validChoice = true;
                     }
                 }
                 catch (java.util.InputMismatchException e){ 
-                    System.out.println("INVALID CHOICE! please choose between 1-4.");
+                    System.out.println("INVALID CHOICE! please choose between 1-3.");
                     input.nextLine();
                 }
             }
             switch (accountChoice) {
-                case 1 -> System.out.printf("YOUR BALANCE: $%.2f\n", currentAcc.showBalance()); //show balance case
-                case 2 -> Transactions.deposit(currentAcc);//deposit case
-                case 3 -> Transactions.withdrawal(currentAcc);//withdrawal case
-                case 4 -> { //exit case
-                    System.out.println("TRANSACTION EXITED");
+                case 1 -> Transactions.deposit(currentAcc);//deposit case
+                case 2 -> Transactions.withdrawal(currentAcc);//withdrawal case
+                case 3 -> { //exit case
+                    System.out.println("POCKET EXITED");
                     inAccount = false;
                 }
             }

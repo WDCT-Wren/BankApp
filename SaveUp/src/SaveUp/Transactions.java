@@ -35,7 +35,7 @@ public class Transactions {
         //Reistration logic
         String name;
         while (true) {
-            System.out.print("ENTER NAME: ");
+            System.out.print("ENTER POCKET NAME: ");
             name = input.nextLine();
             if (name.matches("^[a-zA-Z ]+$")) {break;} //Regex checks the name inputted if it matches with the following (if its a-z or A-Z and if there are spaces)
             System.out.println("INVALID NAME! Please only use letters and spaces.");
@@ -55,11 +55,11 @@ public class Transactions {
     public static void showLogIn() {
         System.out.println("AVAILABLE ACCOUNTS: ");
             for (SavingsPocket acc : Main.accounts) {
-                System.out.println("Account number: " + acc.getAccountNumber() + "|| Owner: " + acc.getOwnerName());
+                System.out.println("Pocket number: " + acc.getAccountNumber() + "|| Pocket Name: " + acc.getOwnerName());
             }
 
             //Choose what account shall be used
-            System.out.print("ENTER ACCOUNT NUMBER TO PROCEED: ");
+            System.out.print("ENTER POCKET NUMBER TO PROCEED: ");
             int enteredAcc = input.nextInt();
             input.nextLine();
             
@@ -74,11 +74,11 @@ public class Transactions {
 
             // if there are still no accounts in the array list, any input will show this.
             if (currentAcc == null){
-                System.out.println("ACCOUNT NOT FOUND!");
+                System.out.println("POCKET NOT FOUND!");
             }
             // if there are existing accounts in the array list, it will follow then the for loop thing.
             else {
-                System.out.println("LOGIN SUCCESSFUL FOR: " + currentAcc.getOwnerName()); //includes the user name to validate the user passed.
+                System.out.println("POCKET PEEK SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
                 //calls the main menu method
                 Main.showMainMenu(currentAcc);
             }

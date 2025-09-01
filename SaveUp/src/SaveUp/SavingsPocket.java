@@ -1,7 +1,7 @@
 package SaveUp;
 
 public class SavingsPocket {
-    private static int nextAccountNumber = 1000; //starting point of the account number generator.
+    private static int nextAccountNumber = 1; //starting point of the account number generator.
     private int accountNumber; 
     private String ownerName;
     private double balance;

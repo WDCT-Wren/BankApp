@@ -4,26 +4,26 @@ public class UI {
         public void endMenu() {
                 System.out.println("MENU EXITED");
                 System.out.println("SESSION ENDED");
-                System.out.println("THANK YOU FOR BANKING WITH US!");
                 Main.isRunning = false;
         }
 
         public void startingMenu() {
                 System.out.println("**************************");
-                System.out.println("          SAVEUP          ");
+                System.out.println("       SAVEUP POCKET      ");
                 System.out.println("**************************");
-                System.out.println("1. Register New Pocket");
+                System.out.println("1. Add A New Pocket");
                 System.out.println("2. Choose Existing Pocket");
                 System.out.println("3. exit");
                 System.out.println("**************************");
         }
 
-        public void transactionMenu() {
-                System.out.println("**********************");
-                System.out.println("1. Show Pocket Balance");
-                System.out.println("2. Deposit");
-                System.out.println("3. Withdraw");
-                System.out.println("4. Exit");
-                System.out.println("**********************");
+        public void transactionMenu(SavingsPocket currentAcc) {
+                System.out.println("**************************");
+                System.out.println("Current Balance: " + currentAcc.showBalance());
+                System.out.println("**************************");
+                System.out.println("1. Deposit");
+                System.out.println("2. Withdraw");
+                System.out.println("3. Exit");
+                System.out.println("**************************");
         }
 }
