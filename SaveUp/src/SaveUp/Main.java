@@ -43,7 +43,7 @@ public class Main {
             }
 
             switch (choice) {
-                case 1 -> Transactions.showRegistrationMenu(); //If usre chooses to register a new account in the session
+                case 1 -> Transactions.showAddPocketMenu(); //If usre chooses to register a new account in the session
                 case 2 -> Transactions.showLogIn(); //If user chooses to log in an existing account
                 case 3 -> UI.endMenu(); //if user chooses to exit the session
             

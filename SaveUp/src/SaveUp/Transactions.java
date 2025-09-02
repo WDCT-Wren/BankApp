@@ -31,17 +31,19 @@ public class Transactions {
     }
 
     //Registration menu method that will be called when the user wants to register a new account
-    public static ArrayList<SavingsPocket> showRegistrationMenu() {
+    public static ArrayList<SavingsPocket> showAddPocketMenu() {
         //Reistration logic
         String name;
+        String password;
         while (true) {
             System.out.print("ENTER POCKET NAME: ");
             name = input.nextLine();
+            System.out.print("ENTER A NEW POCKET KEY:");
+            password = input.nextLine();
             if (name.matches("^[a-zA-Z ]+$")) {break;} //Regex checks the name inputted if it matches with the following (if its a-z or A-Z and if there are spaces)
             System.out.println("INVALID NAME! Please only use letters and spaces.");
         }
-
-            SavingsPocket newAccount = new SavingsPocket(name); //Makes a new object iteration of the bank account with the corresponding name
+            SavingsPocket newAccount = new SavingsPocket(name, password); //Makes a new object iteration of the bank account with the corresponding name
             int newAccountNumber = newAccount.getAccountNumber();
 
             Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
@@ -57,12 +59,10 @@ public class Transactions {
             for (SavingsPocket acc : Main.accounts) {
                 System.out.println("Pocket number: " + acc.getAccountNumber() + "|| Pocket Name: " + acc.getOwnerName());
             }
-
             //Choose what account shall be used
             System.out.print("ENTER POCKET NUMBER TO PROCEED: ");
             int enteredAcc = input.nextInt();
             input.nextLine();
-            
             SavingsPocket currentAcc = null;
             
             for (SavingsPocket acc : Main.accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
@@ -78,6 +78,18 @@ public class Transactions {
             }
             // if there are existing accounts in the array list, it will follow then the for loop thing.
             else {
+                boolean matchingPass = false;
+                while (matchingPass == false){
+                        System.out.print("ENTER POCKET KEY TO PROCEED: ");
+                        String enteredPass = input.nextLine();
+                        if (currentAcc.getPassword().equals(enteredPass)){
+                            matchingPass = true;
+                        }
+                        else {
+                            System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
+                            System.out.println("The password is: " + currentAcc.getPassword() + "While entered pass is: " + enteredPass);
+                        }
+                }
                 System.out.println("POCKET PEEK SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
                 //calls the main menu method
                 Main.showMainMenu(currentAcc);
