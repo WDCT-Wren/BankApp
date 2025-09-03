@@ -43,7 +43,7 @@ public class Transactions {
             if (name.matches("^[a-zA-Z ]+$")) {break;} //Regex checks the name inputted if it matches with the following (if its a-z or A-Z and if there are spaces)
             System.out.println("INVALID NAME! Please only use letters and spaces.");
         }
-            SavingsPocket newAccount = new SavingsPocket(name, password); //Makes a new object iteration of the bank account with the corresponding name
+            SavingsPocket newAccount = new SavingsPocket(name, password); //Makes a new object iteration of the bank account with the corresponding name, and password for security purposes
             int newAccountNumber = newAccount.getAccountNumber();
 
             Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
@@ -79,15 +79,15 @@ public class Transactions {
             // if there are existing accounts in the array list, it will follow then the for loop thing.
             else {
                 boolean matchingPass = false;
+                //Validates the password matching with the account's password. Its in a while loop to repeatedly ask for the correct password until the entered password is equal to the stored password.
                 while (matchingPass == false){
-                        System.out.print("ENTER POCKET KEY TO PROCEED: ");
+                        System.out.print("ENTER POCKET KEY TO PROCEED: "); //prompts the user for the password
                         String enteredPass = input.nextLine();
                         if (currentAcc.getPassword().equals(enteredPass)){
-                            matchingPass = true;
+                            matchingPass = true; //if the entered password is the same to the stored password, the while loop breaks.
                         }
-                        else {
+                        else { //if the password did not match
                             System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
-                            System.out.println("The password is: " + currentAcc.getPassword() + "While entered pass is: " + enteredPass);
                         }
                 }
                 System.out.println("POCKET PEEK SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
