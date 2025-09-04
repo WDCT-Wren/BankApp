@@ -33,17 +33,38 @@ public class Transactions {
     //Registration menu method that will be called when the user wants to register a new account
     public static ArrayList<SavingsPocket> showAddPocketMenu() {
         //Reistration logic
-        String name;
-        String password;
+        String name = null;
+        String password1 = null;
         while (true) {
-            System.out.print("ENTER POCKET NAME: ");
-            name = input.nextLine();
-            System.out.print("ENTER A NEW POCKET KEY:");
-            password = input.nextLine();
-            if (name.matches("^[a-zA-Z ]+$")) {break;} //Regex checks the name inputted if it matches with the following (if its a-z or A-Z and if there are spaces)
-            System.out.println("INVALID NAME! Please only use letters and spaces.");
+            boolean validName = false;
+            while(validName == false) {
+                System.out.print("ENTER POCKET NAME: "); //prompts user for the name of their pocket
+                name = input.nextLine();
+                if (name.matches("^[a-zA-Z ]+$")) {//Regex checks the name inputted if it matches with the following (if its a-z or A-Z and if there are spaces)
+                    validName = true;
+                }
+                else {
+                System.out.println("INVALID NAME! Please only use letters and spaces.");
+                }
+            }
+            boolean validPass = false;
+            while (validPass == false) {
+                System.out.print("ENTER A NEW POCKET KEY:"); //prompts the user for their password
+                password1 = input.nextLine();
+                System.out.print("CONFIRM PASSWORD: "); //confirms their password
+                String password2 = input.nextLine();
+                
+                //checks if the 2 passwords inputted matches
+                if (password1.equals(password2)){ 
+                    validPass = true;
+                }
+                else {
+                    System.out.println("PASSWORD DOES NOT MATCH!");
+                }
+            }
+            break;
         }
-            SavingsPocket newAccount = new SavingsPocket(name, password); //Makes a new object iteration of the bank account with the corresponding name, and password for security purposes
+            SavingsPocket newAccount = new SavingsPocket(name, password1); //Makes a new object iteration of the bank account with the corresponding name, and password for security purposes
             int newAccountNumber = newAccount.getAccountNumber();
 
             Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
@@ -66,7 +87,9 @@ public class Transactions {
             SavingsPocket currentAcc = null;
             
             for (SavingsPocket acc : Main.accounts){ //utilizes a for loop to pass through all existing accounts in the arraylist account and checks and processes each one accordingly
+
                 if (acc.getAccountNumber() == enteredAcc) { //if one iteration of the arraylists of account numbersmatches the entered account, that entered account will now be assigned to the current account, which simply "logs you in" to that iteration of accounts.
+
                     currentAcc = acc;
                     break;
                 };
@@ -90,9 +113,8 @@ public class Transactions {
                             System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
                         }
                 }
-                System.out.println("POCKET PEEK SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
-                //calls the main menu method
-                Main.showMainMenu(currentAcc);
+                System.out.println("POCKET PEEKED SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
+                Main.showMainMenu(currentAcc);//calls the main menu method
             }
     }
     
@@ -101,22 +123,22 @@ public class Transactions {
         boolean validAmount = false;
         while (validAmount == false) {
             try { //Validates the user's input
-                System.out.print("ENTER WITHDRAWAL AMOUNT: ");
+                System.out.print("ENTER WITHDRAWAL AMOUNT: "); 
                 double amount = input.nextDouble();
-                if (amount < 0) {
+                if (amount < 0) { //excpetion for when the user inputs a negative number
                     System.out.println("INVALID AMOUNT! Please enter a non-negative amount.");
                     input.nextLine();
                 }
-                else if (amount > currentAcc.showBalance()) {
+                else if (amount > currentAcc.showBalance()) { //Exception for when the user inputs a widthrawal amount that is larger than the currrent balance.
                     System.out.println("INSUFFICIENT BALANCE!");
                     input.nextLine();
                 }
-                else {
+                else { //if the input is valid
                     currentAcc.withdraw(amount);
                     validAmount = true;
                 }
             }
-            catch (java.util.InputMismatchException e) {
+            catch (java.util.InputMismatchException e) { //exception handling for mismatched user input
                 System.out.println("INVALID AMOUNT! Please enter a valid amount(in numerical form).");
                 input.nextLine();
             }
