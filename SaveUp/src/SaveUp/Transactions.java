@@ -101,17 +101,21 @@ public class Transactions {
             }
             // if there are existing accounts in the array list, it will follow then the for loop thing.
             else {
-                boolean matchingPass = false;
+                boolean validPass = false;
+
                 //Validates the password matching with the account's password. Its in a while loop to repeatedly ask for the correct password until the entered password is equal to the stored password.
-                while (matchingPass == false){
-                        System.out.print("ENTER POCKET KEY TO PROCEED: "); //prompts the user for the password
-                        String enteredPass = input.nextLine();
+                while (validPass == false){
+                    System.out.print("ENTER POCKET KEY TO PROCEED: "); //prompts the user for the password
+                    String enteredPass = input.nextLine();
+                    boolean matchingPass = false;
+                    while(matchingPass == false){
                         if (currentAcc.getPassword().equals(enteredPass)){
                             matchingPass = true; //if the entered password is the same to the stored password, the while loop breaks.
                         }
                         else { //if the password did not match
                             System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
                         }
+                    }
                 }
                 System.out.println("POCKET PEEKED SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
                 Main.showMainMenu(currentAcc);//calls the main menu method
