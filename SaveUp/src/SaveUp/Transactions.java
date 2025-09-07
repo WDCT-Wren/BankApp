@@ -1,3 +1,14 @@
+/* Transactions Class
+ * 
+ * This isthe class that is tasked with handling the different transactions or actions that the user will be taking part in in the program.
+ * 
+ * This primarily has 4 methods for differnt functions:
+ * - Deposits
+ * - Registrations
+ * - Logging in existing pockets
+ * - withdrawals
+ */
+
 package SaveUp;
 
 import java.util.ArrayList;
@@ -9,7 +20,7 @@ public class Transactions {
     //Method for depositing cash into an account's savings.
     public static void deposit(SavingsPocket currentPocket) {
         boolean validAmount = false; 
-        while (!validAmount) {
+        while (validAmount == false) {
             try {
                 System.out.print("ENTER AMOUNT DEPOSITED: ");
                 double amount = input.nextDouble();
@@ -31,10 +42,10 @@ public class Transactions {
     }
 
     //Registration menu method that will be called when the user wants to register a new account
-    public static ArrayList<SavingsPocket> showAddPocketMenu() {
+    public static ArrayList<SavingsPocket> showRegister() {
         //Reistration logic
         String name = null;
-        String password1 = null;
+        String password = null;
         while (true) {
             boolean validName = false;
             while(validName == false) {
@@ -47,30 +58,21 @@ public class Transactions {
                 System.out.println("INVALID NAME! Please only use letters and spaces.");
                 }
             }
-            boolean validPass = false;
-            while (validPass == false) {
-                System.out.print("ENTER A NEW POCKET KEY:"); //prompts the user for their password
-                password1 = input.nextLine();
-                System.out.print("CONFIRM PASSWORD: "); //confirms their password
-                String password2 = input.nextLine();
-                
-                //checks if the 2 passwords inputted matches
-                if (password1.equals(password2)){ 
-                    validPass = true;
-                }
-                else {
-                    System.out.println("PASSWORD DOES NOT MATCH!");
-                }
-            }
+            System.out.print("ENTER A NEW POCKET KEY: "); //prompts the user for their password
+            password = input.nextLine();
+            PasswordValidator.strongPassword(password);
+
+            System.out.print("CONFIRM NEW POCKET KEY: ");
+            String password2 = input.nextLine();
+            PasswordValidator.matchingPass(password, password2);
+
             break;
         }
-            SavingsPocket newAccount = new SavingsPocket(name, password1); //Makes a new object iteration of the bank account with the corresponding name, and password for security purposes
-            int newAccountNumber = newAccount.getAccountNumber();
+            SavingsPocket newAccount = new SavingsPocket(name, password); //Makes a new object iteration of the bank account with the corresponding name, and password for security purposes
 
             Main.accounts.add(newAccount); //adds the account to the SavingsPocket Arraylists inside the Main itself
             
             System.out.println("POCKET ADDED SUCCESSFULLY");
-            System.out.println("YOUR NEW POCKET NUMBER: " + newAccountNumber);
         return Main.accounts;
     }
 
@@ -101,28 +103,26 @@ public class Transactions {
             }
             // if there are existing accounts in the array list, it will follow then the for loop thing.
             else {
-                boolean validPass = false;
+                boolean matchingPass = false;
 
                 //Validates the password matching with the account's password. Its in a while loop to repeatedly ask for the correct password until the entered password is equal to the stored password.
-                while (validPass == false){
+                while (matchingPass == false){
                     System.out.print("ENTER POCKET KEY TO PROCEED: "); //prompts the user for the password
                     String enteredPass = input.nextLine();
-                    boolean matchingPass = false;
-                    while(matchingPass == false){
-                        if (currentAcc.getPassword().equals(enteredPass)){
-                            matchingPass = true; //if the entered password is the same to the stored password, the while loop breaks.
-                        }
-                        else { //if the password did not match
-                            System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
-                        }
+                    
+                    if (currentAcc.getPassword().equals(enteredPass)){
+                        matchingPass = true; //if the entered password is the same to the stored password, the while loop breaks.
+                    }
+                    else { //if the password did not match
+                        System.out.println("KEY DOESN'T MATCH! TRY AGAIN!");
                     }
                 }
                 System.out.println("POCKET PEEKED SUCCESSFUL FOR POCKET " + currentAcc.getOwnerName().toUpperCase()); //includes the user name to validate the user passed.
                 Main.showMainMenu(currentAcc);//calls the main menu method
             }
     }
-    
-    //Method to widthraw funds from an account
+
+    //Method to withdraw funds from an account
     public static void withdrawal(SavingsPocket currentAcc) {
         boolean validAmount = false;
         while (validAmount == false) {
@@ -133,7 +133,7 @@ public class Transactions {
                     System.out.println("INVALID AMOUNT! Please enter a non-negative amount.");
                     input.nextLine();
                 }
-                else if (amount > currentAcc.showBalance()) { //Exception for when the user inputs a widthrawal amount that is larger than the currrent balance.
+                else if (amount > currentAcc.getBalance()) { //Exception for when the user inputs a withdrawal amount that is larger than the currrent balance.
                     System.out.println("INSUFFICIENT BALANCE!");
                     input.nextLine();
                 }

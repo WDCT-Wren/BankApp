@@ -1,7 +1,5 @@
-/* Day 5-Day 7  (Simple OOP project) (08/24/25 - 08/26/25)
- * Simple Bank teller program that utilizes java's OOP features.
- * Kind of hard and made me use chatgpt more than anticipated although I learned a lot in OOP principles at the same time
- * Will update tomorrow with log in features utilizing arrays and arraylists.
+/* Main
+ * This is the main class which will control the flow of the program
  */
 
 package SaveUp;
@@ -43,10 +41,9 @@ public class Main {
             }
 
             switch (choice) {
-                case 1 -> Transactions.showAddPocketMenu(); //If usre chooses to register a new account in the session
+                case 1 -> Transactions.showRegister(); //If usre chooses to register a new account in the session
                 case 2 -> Transactions.showLogIn(); //If user chooses to log in an existing account
                 case 3 -> UI.endMenu(); //if user chooses to exit the session
-            
             }
         }
         input.close();

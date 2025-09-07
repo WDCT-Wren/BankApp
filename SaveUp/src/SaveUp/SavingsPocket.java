@@ -1,3 +1,8 @@
+/* Savings Pocket
+ * This is the class that is tasked with storing a user's pocket privately when called upon.
+ * This is where each instance of an account is made and is stored
+ */
+
 package SaveUp;
 
 public class SavingsPocket {
@@ -22,7 +27,7 @@ public class SavingsPocket {
         return this.ownerName;
     }
 
-    public double showBalance() { //getter for the balance
+    public double getBalance() { //getter for the balance
         return this.balance;
     }
 
