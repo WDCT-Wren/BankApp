@@ -13,10 +13,12 @@ public class Main {
     static Scanner input = new Scanner(System.in);
     static Transactions transactions = new Transactions(); //Object that is focused on the transcations of the user.
     static boolean isRunning = true;
+    static MainFrame MainFrame = new MainFrame();
 
     public static void main(String[] args) {
         //Starting menu (Asks user to either choose an existing account, register an account, and exit)
         while (isRunning){
+            MainFrame.mainFrame();
             UI.startingMenu(); // Calls starting menu
             boolean validChoice = false;
             int choice = 0;
