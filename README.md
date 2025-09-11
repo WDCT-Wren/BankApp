@@ -1,6 +1,7 @@
-_**SaveUp**_
+_**SaveUp**_ (Integration of GUI)
 
   This repository contains my first **full-fledged** Java project as a first-year Computer Science student.
+  Additionally, this specific branch is where I'm currently updating my code step by step to finally have a working GUI making it a full fledged app haha
 
 The goal of this project is to practice and apply core programming concepts in Java, including:
   Basic Object-Oriented Programming (OOP) principles
